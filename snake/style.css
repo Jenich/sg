@@ -30,8 +30,8 @@ table {
 	border: 1px solid #000;
 }
 table td {
-	width: 10px;
-	height: 10px;
+	width: 14px;
+	height: 14px;
 	background: #999;
 }
 td.body, td.tail{

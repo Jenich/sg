@@ -9,6 +9,9 @@
 		else {
 			this.options = $.extend({}, $.fn.snakePlugin.defaults, options);
 		}
+
+		this.options.columns = Math.floor( $(document).width() / 16 );
+		this.options.lines = Math.floor( $(document).height() / 16 );
 		
 		this.isMouseDown = false;
 
@@ -51,7 +54,7 @@
 			var vectorX = [x - self.mouseX, y - self.mouseY],
 				modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
 
-			if (modX > 100) {
+			if (modX > 40) {
 				self.mouseX = x;
 				self.mouseY = y;
 				self.changeDirectionMouse(vectorX);
@@ -67,7 +70,7 @@
 				fi1 = 0,
 				fi2 = 0,
 				modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
-			if ( modX > 100 ) {
+			if ( modX > 40 ) {
 				fi1 = 
 					( vectorX[0] * vectorA[0] + vectorX[1] * vectorA[1] ) / 
 					( modX * Math.sqrt( vectorA[0] * vectorA[0] + vectorA[1] * vectorA[1] ) );
@@ -129,6 +132,7 @@
 			setInterval(function () {
 				if ( !self.$elem.find('td.food').length ) {
 					self.addFood();
+					//self.currentSpeed--;
 				}
 				if ( 0 <= self.lineHead && self.lineHead < self.options.lines && 0 <= self.columnHead && self.columnHead < self.options.columns) {
 					var element = self.$elem.find('td').eq( self.lineHead * self.options.columns + self.columnHead );
