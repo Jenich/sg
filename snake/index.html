@@ -12,6 +12,7 @@
 	<button>Start games</button>
 
 	<script type="text/javascript" src="jquery-2.0.3.js"></script>
+	<script type="text/javascript" src="jquery.mobile-1.3.2.js"></script>
 	<script type="text/javascript" src="snakePlugin.js"></script>
 	<script type="text/javascript" src="unselect.js"></script>
 	<script type="text/javascript">
@@ -23,6 +24,10 @@
 			columns: 10
 		});
 		$(this).css('display', 'none');
+	});
+
+	$(document).on('vmouseup', function () {
+		alert('touch end');
 	});
 	
 

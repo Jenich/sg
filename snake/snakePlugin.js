@@ -30,10 +30,6 @@
 					self.mouseX = e.clientX;
 					self.mouseY = e.clientY;
 					self.isMouseDown = true;
-					/*self.changeDirection = setInterval(function () {
-						
-						self.changeDirectionMouseDown(e);
-					}, 100);*/
 				},
 				onMousemove: function (e) {
 					self.changeDirectionMouseDown(e);
@@ -41,6 +37,7 @@
 				onMouseup: function (e) {
 					self.isMouseDown = false;
 					self.changeDirectionMouse(e);
+					alert('mouse up');
 				}
 			};
 
