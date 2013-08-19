@@ -15,7 +15,7 @@
 		this.createTable();
 		this.createSnake();
 		this.snakeMove();
-		this.masterListeners('on');
+		this.masterListeners('addEventListener');
 	};
 
 	Snake.prototype = {
@@ -26,46 +26,44 @@
 					self.changeDirectionKey(e);
 				},
 				onMousedown: function (e) {
-					console.log('start');
 					self.mouseX = e.screenX;
 					self.mouseY = e.screenY;
-					self.isMouseDown = true;
 				},
 				onMousemove: function (e) {
-					self.changeDirectionMouseDown(e);
+					var touch = e.touches[0];
+					self.changeDirectionMouseDown(touch.screenX, touch.screenY);
 				},
 				onMouseup: function (e) {
-					self.isMouseDown = false;
-					self.changeDirectionMouse(e);
+					self.mouseX = null;
+					self.mouseY = null;
+
 				}
 			};
 
-			$(document)[param]('keydown', this.events.onKeydown);
-			$(document)[param]('touchstart', this.events.onMousedown);
-			$(document)[param]('touchend', this.events.onMouseup);
-			$(document)[param]('touchmove', this.events.onMousemove);
+			document[param]('touchmove', this.events.onMousemove, false);
+			document[param]('touchend', this.events.onMouseup, false);
 		},
 
-		changeDirectionMouseDown: function (e) {
+		changeDirectionMouseDown: function (x, y) {
 			var self = this;
-			if (self.isMouseDown) {
-				var vectorX = [e.screenX - self.mouseX, e.screenY - self.mouseY],
-					modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
-				
-				if (modX > 100) {
-					self.mouseX = e.clientX;
-					self.mouseY = e.clientY;
-					self.changeDirectionMouse(e, vectorX);
-				}
+			self.mouseX = self.mouseX || x;
+			self.mouseY = self.mouseY || y;
+			var vectorX = [x - self.mouseX, y - self.mouseY],
+				modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
+
+			if (modX > 100) {
+				self.mouseX = x;
+				self.mouseY = y;
+				self.changeDirectionMouse(vectorX);
 			}
 		},
 
-		changeDirectionMouse: function (e, vx) {
+		changeDirectionMouse: function (vx) {
 			
 			var self = this,
 				vectorA = [1, 1],
 				vectorB = [-1, 1],
-				vectorX = vx || [e.screenX - self.mouseX, e.screenY - self.mouseY],
+				vectorX = vx;
 				fi1 = 0,
 				fi2 = 0,
 				modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
@@ -77,10 +75,9 @@
 				fi2 = 
 					( vectorX[0] * vectorB[0] + vectorX[1] * vectorB[1] ) / 
 					( modX * Math.sqrt( vectorB[0] * vectorB[0] + vectorB[1] * vectorB[1] ) );
-				console.log(fi1, '', fi2);
 
 				if ( fi1 < 0 && fi2 < 0 && self.direction !== 2 ) {
-					self.direction = 0
+					self.direction = 0;
 				}
 				else if ( fi1 > 0 && fi2 < 0 && self.direction !== 3 ) {
 					self.direction = 1;
@@ -91,22 +88,6 @@
 				else if ( fi1 < 0 && fi2 > 0 && self.direction !== 1 ) {
 					self.direction = 3;
 				}
-			}
-		},
-
-		changeDirectionKey: function (e) {
-			var self = this;
-			if ( e.keyCode === 37 && self.direction !== 1 ) {
-				self.direction = 3;
-			}
-			else if ( e.keyCode === 38 && self.direction !== 2 ) {
-				self.direction = 0;
-			}
-			else if ( e.keyCode === 39 && self.direction !== 3 ) {
-				self.direction = 1;
-			} 
-			else if ( e.keyCode === 40 && self.direction !== 0 ) {
-				self.direction = 2;
 			}
 		},
 
@@ -215,13 +196,13 @@
 		endGame: function (interval) {
 			var self = this;
 			clearInterval(interval);
-			self.masterListeners('off');
+			self.masterListeners('removeEventListener');
 			if ( confirm('You lose(\nTry again?') ) {
 				
 				self.clearField();
 				self.createSnake();
 				self.snakeMove();
-				self.masterListeners('on');
+				self.masterListeners('addEventListener');
 			}
 		},
 
