@@ -37,7 +37,7 @@
 				onMouseup: function (e) {
 					self.isMouseDown = false;
 					self.changeDirectionMouse(e);
-					alert('mouse up');
+					//alert('mouse up');
 				}
 			};
 
