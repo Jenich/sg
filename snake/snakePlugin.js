@@ -41,9 +41,9 @@
 			};
 
 			$(document)[param]('keydown', this.events.onKeydown);
-			$(document)[param]('vmousedown', this.events.onMousedown);
-			$(document)[param]('vmouseup', this.events.onMouseup);
-			$(document)[param]('mousemove', this.events.onMousemove);
+			$(document)[param]('touchstart', this.events.onMousedown);
+			$(document)[param]('touchend', this.events.onMouseup);
+			$(document)[param]('touchmove', this.events.onMousemove);
 		},
 
 		changeDirectionMouseDown: function (e) {
