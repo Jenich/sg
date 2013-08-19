@@ -27,8 +27,8 @@
 				},
 				onMousedown: function (e) {
 					console.log('start');
-					self.mouseX = e.clientX;
-					self.mouseY = e.clientY;
+					self.mouseX = e.screenX;
+					self.mouseY = e.screenY;
 					self.isMouseDown = true;
 				},
 				onMousemove: function (e) {
@@ -37,20 +37,19 @@
 				onMouseup: function (e) {
 					self.isMouseDown = false;
 					self.changeDirectionMouse(e);
-					//alert('mouse up');
 				}
 			};
 
 			$(document)[param]('keydown', this.events.onKeydown);
-			$(document)[param]('touchstart mousedown', this.events.onMousedown);
-			$(document)[param]('touchend mouseup', this.events.onMouseup);
+			$(document)[param]('vmousedown', this.events.onMousedown);
+			$(document)[param]('vmouseup', this.events.onMouseup);
 			$(document)[param]('mousemove', this.events.onMousemove);
 		},
 
 		changeDirectionMouseDown: function (e) {
 			var self = this;
 			if (self.isMouseDown) {
-				var vectorX = [e.clientX - self.mouseX, e.clientY - self.mouseY],
+				var vectorX = [e.screenX - self.mouseX, e.screenY - self.mouseY],
 					modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
 				
 				if (modX > 100) {
@@ -66,7 +65,7 @@
 			var self = this,
 				vectorA = [1, 1],
 				vectorB = [-1, 1],
-				vectorX = vx || [e.clientX - self.mouseX, e.clientY - self.mouseY],
+				vectorX = vx || [e.screenX - self.mouseX, e.screenY - self.mouseY],
 				fi1 = 0,
 				fi2 = 0,
 				modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
