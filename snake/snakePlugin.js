@@ -57,11 +57,16 @@
 			if (modX > 40) {
 				self.mouseX = x;
 				self.mouseY = y;
-				self.changeDirectionMouse(vectorX);
+				var ch1 = 2, ch2 = 2;
+				if ( self.snake.length ) {
+					ch1 = self.snake[0][0] - self.snake[1][0],
+					ch2 = self.snake[0][1] - self.snake[1][1];
+				}
+				self.changeDirectionMouse(vectorX, ch1, ch2);
 			}
 		},
 
-		changeDirectionMouse: function (vx) {
+		changeDirectionMouse: function (vx, ch1, ch2) {
 			
 			var self = this,
 				vectorA = [1, 1],
@@ -79,16 +84,16 @@
 					( vectorX[0] * vectorB[0] + vectorX[1] * vectorB[1] ) / 
 					( modX * Math.sqrt( vectorB[0] * vectorB[0] + vectorB[1] * vectorB[1] ) );
 
-				if ( fi1 < 0 && fi2 < 0 && self.direction !== 2 ) {
+				if ( fi1 < 0 && fi2 < 0 && ch1 !== 1 && ch2 !== 0 ) {
 					self.direction = 0;
 				}
-				else if ( fi1 > 0 && fi2 < 0 && self.direction !== 3 ) {
+				else if ( fi1 > 0 && fi2 < 0 && ch1 !== 0 && ch2 !== 1 ) {
 					self.direction = 1;
 				}
-				else if ( fi1 > 0 && fi2 > 0 && self.direction !== 0 ) {
+				else if ( fi1 > 0 && fi2 > 0 && ch1 !== -1 && ch2 !== 0 ) {
 					self.direction = 2
 				}
-				else if ( fi1 < 0 && fi2 > 0 && self.direction !== 1 ) {
+				else if ( fi1 < 0 && fi2 > 0 && ch1 !== 0 && ch2 !== -1 ) {
 					self.direction = 3;
 				}
 			}
