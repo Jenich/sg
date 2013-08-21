@@ -18,7 +18,11 @@
 		this.isFirstAcceleration = true;
 		this.snake = [];
 
-		this.createButtonStart();
+		//this.createButtonStart();
+
+		this.createTable();
+		this.createSnake();
+		this.masterListeners('addEventListener');
 	};
 
 	Snake.prototype = {
