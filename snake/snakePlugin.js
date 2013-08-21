@@ -94,18 +94,18 @@
 
 			if ( !self.isFirstAcceleration ) {
 				
-				if ( self.snake.length ) {
+				if ( self.snake.length ) {alert( ch1 + ' ' + ch2 );
 					ch1 = self.snake[0][0] - self.snake[1][0];
 					ch2 = self.snake[0][1] - self.snake[1][1];
 				}
-				alert( ch1 + ' ' + ch2 );
+				
 				//alert( acceleration );
 				self.changeDirectionAccelerometer( acceleration, ch1, ch2 );
 			}
 			else {
 				self.primaryAcceleration = acceleration;
 				self.isFirstAcceleration = false;
-				//alert( 'first acceleration' );
+				alert( 'first acceleration' );
 			}
 		},
 
