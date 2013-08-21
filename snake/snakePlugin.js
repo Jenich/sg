@@ -18,10 +18,10 @@
 		this.isFirstAcceleration = true;
 		this.snake = [];
 
-		//this.createButtonStart();
+		this.createButtonStart();
 
-		this.createTable();
-		this.createSnake();
+		/*this.createTable();
+		this.createSnake();*/
 		this.masterListeners('addEventListener');
 	};
 
@@ -185,7 +185,6 @@
 				$(this).css('display', 'none');
 				self.createTable();
 				self.createSnake();
-				self.masterListeners('addEventListener');
 				//this.snakeMove();
 			});
 		},
