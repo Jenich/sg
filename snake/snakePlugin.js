@@ -17,9 +17,7 @@
 		this.isMouseDown = false;
 		self.isFirstAcceleration = true;
 
-		this.createTable();
-		this.createSnake();
-		this.snakeMove();
+		this.createButtonStart();
 		this.masterListeners('addEventListener');
 	};
 
@@ -94,7 +92,7 @@
 				ch1 = 2, ch2 = 2;
 
 			if ( !self.isFirstAcceleration ) {
-				alert( 'not first acceleration' );
+				//alert( 'not first acceleration' );
 				if ( self.snake.length ) {
 					ch1 = self.snake[0][0] - self.snake[1][0],
 					ch2 = self.snake[0][1] - self.snake[1][1];
@@ -105,7 +103,7 @@
 			else {
 				self.primaryAcceleration = acceleration;
 				self.isFirstAcceleration = false;
-				alert( 'first acceleration' );
+				//alert( 'first acceleration' );
 			}
 		},
 
@@ -166,6 +164,18 @@
 					self.direction = 3;
 				}
 			}
+		},
+
+		createButtonStart: function () {
+			var self = this,
+				buttonStart = $('<button>Start games</button>');
+			self.$elem.before( buttonStart );
+			buttonStart.click(function () {
+				$(this).css('display', 'none');
+				self.createTable();
+				self.createSnake();
+				//this.snakeMove();
+			});
 		},
 
 		createTable: function () {

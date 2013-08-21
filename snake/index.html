@@ -6,24 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<table border="0"> <!-- cellspacing="0"> -->
+	<table border="0">
 	</table>
-
-	<button>Start games</button>
 
 	<script type="text/javascript" src="jquery-2.0.3.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="snakePlugin.js"></script>	
 	<script type="text/javascript">
 
-	$('button').on('click', function () {
-		$('table').snakePlugin({
-			speed: 300,
-			lines: 10,
-			columns: 10
-		});
-		$(this).css('display', 'none');
-	});	
+	$('table').snakePlugin({
+		speed: 300,
+		lines: 10,
+		columns: 10
+	});
 
 	</script>
 </body>
