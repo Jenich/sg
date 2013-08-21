@@ -15,7 +15,8 @@
 		this.options.lines = Math.floor( $(document).height() / 16 );
 		
 		this.isMouseDown = false;
-		self.isFirstAcceleration = true;
+		this.isFirstAcceleration = true;
+		this.snake = [];
 
 		this.createButtonStart();
 		this.masterListeners('addEventListener');
@@ -92,12 +93,13 @@
 				ch1 = 2, ch2 = 2;
 
 			if ( !self.isFirstAcceleration ) {
-				alert( 'not first acceleration' );
+				
 				if ( self.snake.length ) {
 					ch1 = self.snake[0][0] - self.snake[1][0];
 					ch2 = self.snake[0][1] - self.snake[1][1];
 				}
-				alert( acceleration );
+				alert( ch1 + ' ' + ch2 );
+				//alert( acceleration );
 				self.changeDirectionAccelerometer( acceleration, ch1, ch2 );
 			}
 			else {
@@ -172,7 +174,7 @@
 		createButtonStart: function () {
 			var self = this,
 				buttonStart = $('<button>Start games</button>');
-			self.$elem.before( buttonStart );
+			self.$elem.after( buttonStart );
 			buttonStart.click(function () {
 				$(this).css('display', 'none');
 				self.createTable();
