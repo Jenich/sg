@@ -19,7 +19,6 @@
 		this.snake = [];
 
 		this.createButtonStart();
-		this.masterListeners('addEventListener');
 	};
 
 	Snake.prototype = {
@@ -183,6 +182,7 @@
 				$(this).css('display', 'none');
 				self.createTable();
 				self.createSnake();
+				this.masterListeners('addEventListener');
 				//this.snakeMove();
 			});
 		},
