@@ -1,34 +1,3 @@
-    // Wait for Cordova to load
-    //
-    
-
-    // Cordova is ready
-    //
-
-    // Start watching the acceleration
-    //
-    
-
-    // Stop watching the acceleration
-    //
-    
-
-    // onSuccess: Get a snapshot of the current acceleration
-    //
-    function onSuccess(acceleration) {
-        
-    }
-
-    // onError: Failed to get the acceleration
-    //
-    function onError() {
-        alert('onError!');
-    }
-
-
-
-
-
 (function ($, window, document, undefined) {
 
 	function Snake (options, elem) {
@@ -107,7 +76,7 @@
 		startWatch: function () {
 			var self = this,
 				options = { frequency: self.currentSpeed / 3 };
-			watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
+			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
 
 		stopWatch: function () {
@@ -119,9 +88,8 @@
 		},
 
 		onSuccess: function (acceleration) {
-			var self = this;
-			var ch1 = 2, ch2 = 2;
-				
+			var self = this,
+				ch1 = 2, ch2 = 2;				
 
 			if ( !self.isFirstAcceleration ) {
 				if ( self.snake.length ) {
@@ -134,6 +102,7 @@
 			else {
 				self.primaryAcceleration = acceleration;
 				self.isFirstAcceleration = true;
+				alert( 'first acceleration' );
 			}
 		},
 
