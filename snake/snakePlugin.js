@@ -44,10 +44,12 @@
 				},
 				onDeviceReady: function () {
 					self.watchID = null;
+					alert('onDeviceReady');
 					self.startWatch( self.options.speed / 4 );
 					//navigator.accelerometer.getCurrentAcceleration(self.onSuccess, self.onError);
 				}
 			};
+			alert('masterListeners');
 
 			document[param]('touchmove', this.events.onMousemove, false);
 			document[param]('touchend', this.events.onMouseup, false);
