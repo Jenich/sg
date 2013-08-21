@@ -76,6 +76,7 @@
 		startWatch: function () {
 			var self = this,
 				options = { frequency: self.currentSpeed / 3 };
+			alert( 'start watch' );
 			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
 
