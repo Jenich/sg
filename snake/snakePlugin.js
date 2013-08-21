@@ -15,7 +15,7 @@
 		this.options.lines = Math.floor( $(document).height() / 16 );
 		
 		this.isMouseDown = false;
-		self.isFirstAcceleration = false;
+		self.isFirstAcceleration = true;
 
 		this.createTable();
 		this.createSnake();
@@ -77,7 +77,7 @@
 		startWatch: function () {
 			var self = this,
 				options = { frequency: self.currentSpeed / 3 };
-			alert( options.frequency );
+			//alert( options.frequency );
 			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
 
@@ -91,9 +91,10 @@
 
 		onSuccess: function (acceleration) {
 			var self = this,
-				ch1 = 2, ch2 = 2;				
+				ch1 = 2, ch2 = 2;
 
 			if ( !self.isFirstAcceleration ) {
+				alert( 'not first acceleration' );
 				if ( self.snake.length ) {
 					ch1 = self.snake[0][0] - self.snake[1][0],
 					ch2 = self.snake[0][1] - self.snake[1][1];
@@ -103,7 +104,7 @@
 			}
 			else {
 				self.primaryAcceleration = acceleration;
-				self.isFirstAcceleration = true;
+				self.isFirstAcceleration = false;
 				alert( 'first acceleration' );
 			}
 		},
