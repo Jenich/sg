@@ -15,6 +15,7 @@
 		this.options.lines = Math.floor( $(document).height() / 16 );
 		
 		this.isMouseDown = false;
+		self.isFirstAcceleration = false;
 
 		this.createTable();
 		this.createSnake();
@@ -76,7 +77,7 @@
 		startWatch: function () {
 			var self = this,
 				options = { frequency: self.currentSpeed / 3 };
-			alert( 'start watch' );
+			alert( options.frequency );
 			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
 
