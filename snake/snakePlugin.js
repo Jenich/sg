@@ -76,7 +76,7 @@
 		startWatch: function (speed) {
 			var self = this,
 				options = { frequency: speed};
-			//alert( options.frequency );
+			alert( speed );
 			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
 
@@ -91,6 +91,8 @@
 		onSuccess: function (acceleration) {
 			var self = this,
 				ch1 = 2, ch2 = 2;
+
+			alert( self );
 
 			if ( !self.isFirstAcceleration ) {
 				alert( self.snake.length );
