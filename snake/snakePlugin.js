@@ -65,7 +65,7 @@
 				self.mouseY = y;
 				var ch1 = 2, ch2 = 2;
 				if ( self.snake.length ) {
-					ch1 = self.snake[0][0] - self.snake[1][0],
+					ch1 = self.snake[0][0] - self.snake[1][0];
 					ch2 = self.snake[0][1] - self.snake[1][1];
 				}
 				self.changeDirectionMouse(vectorX, ch1, ch2);
@@ -92,12 +92,12 @@
 				ch1 = 2, ch2 = 2;
 
 			if ( !self.isFirstAcceleration ) {
-				//alert( 'not first acceleration' );
+				alert( 'not first acceleration' );
 				if ( self.snake.length ) {
-					ch1 = self.snake[0][0] - self.snake[1][0],
+					ch1 = self.snake[0][0] - self.snake[1][0];
 					ch2 = self.snake[0][1] - self.snake[1][1];
 				}
-				
+				alert( acceleration );
 				self.changeDirectionAccelerometer( acceleration, ch1, ch2 );
 			}
 			else {
@@ -117,7 +117,7 @@
 				differOnY = self.primaryAcceleration.y - acceleration.y;
 
 			alert( differOnX + " " + differOnY );
-			
+
 			if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 				//left
 				alert( 'left' );
