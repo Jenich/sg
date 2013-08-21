@@ -52,12 +52,10 @@
 					//navigator.accelerometer.getCurrentAcceleration(self.onSuccess, self.onError);
 				}
 			};
-			alert('masterListeners');
 
 			document[param]('touchmove', this.events.onMousemove, false);
 			document[param]('touchend', this.events.onMouseup, false);
-			//document[param]('deviceready', this.events.onDeviceReady, false);
-			self.events.onDeviceReady();
+			document[param]('deviceready', this.events.onDeviceReady, false);
 		},
 
 		changeDirectionMouseDown: function (x, y) {
@@ -98,7 +96,7 @@
 			var self = this,
 				ch1 = 2, ch2 = 2;
 
-			alert( self );
+			//alert( self );
 
 			if ( !self.isFirstAcceleration ) {
 				alert( self.snake.length );
@@ -126,7 +124,7 @@
 				differOnX = self.primaryAcceleration.x - acceleration.x,
 				differOnY = self.primaryAcceleration.y - acceleration.y;
 
-			alert( differOnX + " " + differOnY );
+			//alert( differOnX + " " + differOnY );
 
 			if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 				//left
