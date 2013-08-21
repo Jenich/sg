@@ -1,4 +1,36 @@
+    // Wait for Cordova to load
+    //
+    
+
+    // Cordova is ready
+    //
+
+    // Start watching the acceleration
+    //
+    
+
+    // Stop watching the acceleration
+    //
+    
+
+    // onSuccess: Get a snapshot of the current acceleration
+    //
+    function onSuccess(acceleration) {
+        
+    }
+
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+
+
+
+
+
 (function ($, window, document, undefined) {
+
 	function Snake (options, elem) {
 		this.elem = elem;
 		this.$elem = $(elem);
@@ -40,11 +72,17 @@
 					self.mouseX = null;
 					self.mouseY = null;
 
+				},
+				onDeviceReady: function () {
+					self.watchID = null;
+					self.startWatch();
+					//navigator.accelerometer.getCurrentAcceleration(self.onSuccess, self.onError);
 				}
 			};
 
 			document[param]('touchmove', this.events.onMousemove, false);
 			document[param]('touchend', this.events.onMouseup, false);
+			document[param]('deviceready', this.events.onDeviceReady, false);
 		},
 
 		changeDirectionMouseDown: function (x, y) {
@@ -63,6 +101,65 @@
 					ch2 = self.snake[0][1] - self.snake[1][1];
 				}
 				self.changeDirectionMouse(vectorX, ch1, ch2);
+			}
+		},
+
+		startWatch: function () {
+			var self = this,
+				options = { frequency: self.currentSpeed / 3 };
+			watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
+		},
+
+		stopWatch: function () {
+			var self = this;
+			if ( self.watchID ) {
+				navigator.accelerometer.clearWatch( self.watchID );
+				self.watchID = null;
+			}
+		},
+
+		onSuccess: function (acceleration) {
+			var self = this;
+			var ch1 = 2, ch2 = 2;
+				
+
+			if ( !self.isFirstAcceleration ) {
+				if ( self.snake.length ) {
+					ch1 = self.snake[0][0] - self.snake[1][0],
+					ch2 = self.snake[0][1] - self.snake[1][1];
+				}
+				
+				self.changeDirectionAccelerometer( acceleration, ch1, ch2 );
+			}
+			else {
+				self.primaryAcceleration = acceleration;
+				self.isFirstAcceleration = true;
+			}
+		},
+
+		onError: function () {
+			alert('onError!');
+		},
+
+		changeDirectionAccelerometer: function (acceleration, ch1, ch2) {
+			var self = this,
+				differOnX = self.primaryAcceleration.x - acceleration.x,
+				differOnY = self.primaryAcceleration.y - acceleration.y;
+			if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
+				//left
+				alert( 'left' );
+			}
+			else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
+				//right
+				alert( 'right' );
+			}
+			else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+				//down
+				alert( 'down' );
+			}
+			else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+				//up
+				alert( 'up' );
 			}
 		},
 
@@ -263,4 +360,5 @@
 		lines: 15,
 		speed: 300
 	};
+
 })(jQuery, window, document, undefined);
