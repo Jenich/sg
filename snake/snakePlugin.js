@@ -43,7 +43,7 @@
 				},
 				onDeviceReady: function () {
 					self.watchID = null;
-					self.startWatch();
+					self.startWatch( self.options.speed / 4 );
 					//navigator.accelerometer.getCurrentAcceleration(self.onSuccess, self.onError);
 				}
 			};
@@ -72,9 +72,9 @@
 			}
 		},
 
-		startWatch: function () {
+		startWatch: function (speed) {
 			var self = this,
-				options = { frequency: self.currentSpeed / 3 };
+				options = { frequency: speed};
 			//alert( options.frequency );
 			self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 		},
