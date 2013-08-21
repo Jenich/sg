@@ -56,7 +56,8 @@
 
 			document[param]('touchmove', this.events.onMousemove, false);
 			document[param]('touchend', this.events.onMouseup, false);
-			document[param]('deviceready', this.events.onDeviceReady, false);
+			//document[param]('deviceready', this.events.onDeviceReady, false);
+			self.events.onDeviceReady();
 		},
 
 		changeDirectionMouseDown: function (x, y) {
