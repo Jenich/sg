@@ -182,7 +182,7 @@
 				$(this).css('display', 'none');
 				self.createTable();
 				self.createSnake();
-				this.masterListeners('addEventListener');
+				self.masterListeners('addEventListener');
 				//this.snakeMove();
 			});
 		},
