@@ -115,6 +115,9 @@
 			var self = this,
 				differOnX = self.primaryAcceleration.x - acceleration.x,
 				differOnY = self.primaryAcceleration.y - acceleration.y;
+
+			alert( differOnX + " " + differOnY );
+			
 			if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 				//left
 				alert( 'left' );
