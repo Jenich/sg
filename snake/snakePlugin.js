@@ -96,7 +96,7 @@
 			var self = this,
 				ch1 = 2, ch2 = 2;
 
-			alert( 'success' );
+			alert( self.isFirstAcceleration );
 
 			if ( !self.isFirstAcceleration ) {
 				alert( self.snake.length );
