@@ -107,13 +107,10 @@ var Snake = (function ($, window, document, undefined) {
 				var ch1 = 2, ch2 = 2;
 
 				if ( !self.isFirstAcceleration ) {
-					//alert( self.snake.length );
 					if ( self.snake.length ) {
 						ch1 = self.snake[0][0] - self.snake[1][0];
 						ch2 = self.snake[0][1] - self.snake[1][1];
 					}
-					
-					//alert( acceleration );
 					self.changeDirectionAccelerometer( acceleration, ch1, ch2 );
 				}
 				else {
@@ -130,8 +127,6 @@ var Snake = (function ($, window, document, undefined) {
 			changeDirectionAccelerometer: function (acceleration, ch1, ch2) {
 				var differOnX = self.primaryAcceleration.x - acceleration.x,
 					differOnY = self.primaryAcceleration.y - acceleration.y;
-
-				//alert( differOnX + " " + differOnY );
 
 				if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 					//left
