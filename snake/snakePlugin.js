@@ -129,20 +129,20 @@ var Snake = (function ($, window, document, undefined) {
 					differOnY = self.primaryAcceleration.y - acceleration.y;
 
 				if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
-					//left
-					alert( 'left' );
-				}
-				else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 					//right
 					alert( 'right' );
 				}
-				else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
-					//down
-					alert( 'down' );
+				else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
+					//left
+					alert( 'left' );
 				}
-				else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+				else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
 					//up
 					alert( 'up' );
+				}
+				else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+					//down
+					alert( 'down' );
 				}
 			},
 
