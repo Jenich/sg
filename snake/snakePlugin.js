@@ -130,19 +130,19 @@ var Snake = (function ($, window, document, undefined) {
 
 				if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 					//right
-					alert( 'right' );
+					self.direction = 1;
 				}
 				else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
 					//left
-					alert( 'left' );
+					self.direction = 3;
 				}
 				else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
 					//up
-					alert( 'up' );
+					self.direction = 0;
 				}
 				else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
 					//down
-					alert( 'down' );
+					self.direction = 2;
 				}
 			},
 
@@ -298,7 +298,7 @@ var Snake = (function ($, window, document, undefined) {
 					$(this).css('display', 'none');
 					self.createTable();
 					self.createSnake();
-					//self.snakeMove();
+					self.snakeMove();
 				});
 			},
 		};
