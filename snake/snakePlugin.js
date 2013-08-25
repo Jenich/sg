@@ -320,6 +320,11 @@ var Snake = (function ($, window, document, undefined) {
 			else {
 				self.options = $.extend( {}, defaults, options );
 			}
+
+			if ( self.options.isFullScreen ) {
+				self.options.columns = Math.floor( $(document).width() / 16 );
+				self.options.lines = Math.floor( $(document).height() / 16 );
+			}
 			self.addOptions();
 			self.createButtonStart();
 		}
