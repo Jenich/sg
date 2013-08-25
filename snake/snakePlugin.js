@@ -70,6 +70,7 @@ var Snake = (function ($, window, document, undefined) {
 			addOptions: function () {
 				self.isFirstAcceleration = true;
 				self.snake = [];
+				self.minPixels = Math.floor( $('body').width() );
 			},
 
 			changeDirectionMouseDown: function (x, y) {
@@ -78,7 +79,7 @@ var Snake = (function ($, window, document, undefined) {
 				var vectorX = [x - self.mouseX, y - self.mouseY],
 					modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
 
-				if (modX > 40) {
+				if (modX > self.minPixels) {
 					self.mouseX = x;
 					self.mouseY = y;
 					var ch1 = 2, ch2 = 2;
@@ -128,32 +129,32 @@ var Snake = (function ($, window, document, undefined) {
 				var differOnX = self.primaryAcceleration.x - acceleration.x,
 					differOnY = self.primaryAcceleration.y - acceleration.y;
 
-				if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
+				if ( differOnX > 2.5 && -1.5 < differOnY && differOnY < 1.5 && ch1 !== 0 && ch2 !== 1 ) {
 					//right
 					self.direction = 1;
 				}
-				else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 ) {
+				else if ( differOnX < -2.5 && -1.5 < differOnY && differOnY < 1.5 && ch1 !== 0 && ch2 !== -1 ) {
 					//left
 					self.direction = 3;
 				}
-				else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+				else if ( differOnY > 2.5 && -1.5 < differOnX && differOnX < 1.5 && ch1 !== 1 && ch2 !== 0 ) {
 					//up
 					self.direction = 0;
 				}
-				else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 ) {
+				else if ( differOnY < -2.5 && -1.5 < differOnX && differOnX < 1.5 && ch1 !== -1 && ch2 !== 0 ) {
 					//down
 					self.direction = 2;
 				}
 			},
 
-			changeDirectionMouse: function (vx, ch1, ch2) {				
+			changeDirectionMouse: function (vx, ch1, ch2) {
 				var vectorA = [1, 1],
 					vectorB = [-1, 1],
 					vectorX = vx;
 					fi1 = 0,
 					fi2 = 0,
 					modX = Math.sqrt( vectorX[0] * vectorX[0] + vectorX[1] * vectorX[1] );
-				if ( modX > 40 ) {
+				if ( modX > self.minPixels ) {
 					fi1 = 
 						( vectorX[0] * vectorA[0] + vectorX[1] * vectorA[1] ) / 
 						( modX * Math.sqrt( vectorA[0] * vectorA[0] + vectorA[1] * vectorA[1] ) );
@@ -163,15 +164,19 @@ var Snake = (function ($, window, document, undefined) {
 						( modX * Math.sqrt( vectorB[0] * vectorB[0] + vectorB[1] * vectorB[1] ) );
 
 					if ( fi1 < 0 && fi2 < 0 && ch1 !== 1 && ch2 !== 0 ) {
+						// up
 						self.direction = 0;
 					}
 					else if ( fi1 > 0 && fi2 < 0 && ch1 !== 0 && ch2 !== 1 ) {
+						// right
 						self.direction = 1;
 					}
 					else if ( fi1 > 0 && fi2 > 0 && ch1 !== -1 && ch2 !== 0 ) {
+						// down
 						self.direction = 2
 					}
 					else if ( fi1 < 0 && fi2 > 0 && ch1 !== 0 && ch2 !== -1 ) {
+						// left
 						self.direction = 3;
 					}
 				}
@@ -252,8 +257,9 @@ var Snake = (function ($, window, document, undefined) {
 			endGame: function (interval) {
 				clearInterval(interval);
 				self.masterListeners('removeEventListener');
+
 				if ( confirm('You lose(\nTry again?') ) {
-					
+					self.isFirstAcceleration = true;
 					self.clearField();
 					self.createSnake();
 					self.snakeMove();
