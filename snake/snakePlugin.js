@@ -33,8 +33,9 @@ var Snake = (function ($, window, document, undefined) {
 					}
 				};
 
-				document[param]('touchmove', this.events.onMousemove, false);
-				document[param]('touchend', this.events.onMouseup, false);
+				document[param]('touchmove', self.events.onMousemove, false);
+				document[param]('touchend', self.events.onMouseup, false);
+				document[param]('deviceready', self.events.onDeviceReady, false);
 			},
 
 			createTable: function () {
