@@ -326,6 +326,7 @@ var Snake = (function ($, window, document, undefined) {
 				self.options.lines = Math.floor( $(document).height() / 16 );
 			}
 			self.addOptions();
+			self.masterListeners('addEventListener');
 			self.createButtonStart();
 		}
 	};
