@@ -28,7 +28,6 @@ var Snake = (function ($, window, document, undefined) {
 					},
 					onDeviceReady: function () {
 						self.watchID = null;
-						//alert('onDeviceReady');
 						self.startWatch( self.options.speed / 4 );
 					}
 				};
@@ -70,7 +69,7 @@ var Snake = (function ($, window, document, undefined) {
 			addOptions: function () {
 				self.isFirstAcceleration = true;
 				self.snake = [];
-				self.minPixels = Math.floor( $('body').width() );
+				self.minPixels = Math.floor( $(document).width() / 10 );
 			},
 
 			changeDirectionMouseDown: function (x, y) {
@@ -93,7 +92,6 @@ var Snake = (function ($, window, document, undefined) {
 
 			startWatch: function (speed) {
 				var options = { frequency: speed };
-				//alert( speed );
 				self.watchID = navigator.accelerometer.watchAcceleration(self.onSuccess, self.onError, options);
 			},
 
@@ -117,7 +115,6 @@ var Snake = (function ($, window, document, undefined) {
 				else {
 					self.primaryAcceleration = acceleration;
 					self.isFirstAcceleration = false;
-					//alert( 'first acceleration' );
 				}
 			},
 
