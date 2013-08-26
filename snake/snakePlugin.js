@@ -38,6 +38,7 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			createTable: function () {
+				alert( 'createTable' );
 				var template = '<table>';
 				for (var i = 0; i < self.options.lines; i++) {
 					template += '<tr>'
