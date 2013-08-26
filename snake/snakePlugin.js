@@ -326,9 +326,10 @@ var Snake = (function ($, window, document, undefined) {
 			self.clearAll();
 
 			if ( self.options.isFullScreen ) {
-				self.options.columns = Math.floor( $(window).width() / 16 );
-				self.options.lines = Math.floor( $(window).height() / 16 );
+				self.options.columns = Math.floor( window.innerWidth / 16 );
+				self.options.lines = Math.floor( window.innerHeight / 16 );
 			}
+			alert( window );
 			self.addOptions();
 			self.masterListeners('addEventListener');
 			self.createButtonStart();
