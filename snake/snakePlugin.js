@@ -324,7 +324,7 @@ var Snake = (function ($, window, document, undefined) {
 			}
 
 			self.clearAll();
-
+			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
 				self.options.columns = Math.floor( window.innerWidth / 16 );
 				self.options.lines = Math.floor( window.innerHeight / 16 );
@@ -332,7 +332,7 @@ var Snake = (function ($, window, document, undefined) {
 			alert( window );
 			self.addOptions();
 			self.masterListeners('addEventListener');
-			self.createButtonStart();
+			
 		}
 	};
 
