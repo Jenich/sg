@@ -37,6 +37,12 @@ var Snake = (function ($, window, document, undefined) {
 				document[param]('deviceready', self.events.onDeviceReady, false);
 			},
 
+			clearAll: function () {
+				var $body = $('body');
+				$body.find('button').remove();
+				$body.find('table').remove();
+			},
+
 			createTable: function () {
 				alert( 'createTable' );
 				var template = '<table>';
@@ -325,6 +331,8 @@ var Snake = (function ($, window, document, undefined) {
 			else {
 				self.options = $.extend( {}, defaults, options );
 			}
+
+			self.clearAll();
 
 			if ( self.options.isFullScreen ) {
 				self.options.columns = Math.floor( $(document).width() / 16 );
