@@ -295,8 +295,15 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			createButtonStart: function () {
-				var buttonStart = $('<button>Start games</button>');
-				$('body').after( buttonStart );
+				var button = $('button'),
+					buttonStart = $('<button>Start games</button>');
+				if ( button.length ) {
+					buttonStart = button;
+					alert('old button');
+				}
+				else {
+					$('body').after( buttonStart );
+				}
 				buttonStart.click(function () {
 					$(this).css('display', 'none');
 					self.createTable();
