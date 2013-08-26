@@ -328,12 +328,12 @@ var Snake = (function ($, window, document, undefined) {
 			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
 				$('body').css({
-					'min-width': '100px',
-					'min-height': '200px'
+					'min-width': '100%',
+					'min-height': '100%'
 				});
 
-				self.options.columns = Math.floor( window.innerWidth / 16 );
-				self.options.lines = Math.floor( window.innerHeight / 16 );
+				self.options.columns = Math.floor( $('body').width() / 16 );
+				self.options.lines = Math.floor( $('body').height() / 16 );
 			}
 			alert( window.innerWidth );
 			self.addOptions();
