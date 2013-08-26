@@ -328,8 +328,8 @@ var Snake = (function ($, window, document, undefined) {
 			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
 				$('body').css({
-					'min-width': 100,
-					'min-height': 200
+					'min-width': '100px',
+					'min-height': '200px'
 				});
 
 				self.options.columns = Math.floor( window.innerWidth / 16 );
