@@ -48,6 +48,7 @@ var Snake = (function ($, window, document, undefined) {
 					template += '</tr>'
 				}
 				template += '</table>'
+				alert( $('body') );
 				$('body').append(template);
 			},
 
@@ -329,6 +330,7 @@ var Snake = (function ($, window, document, undefined) {
 				self.options.columns = Math.floor( $(document).width() / 16 );
 				self.options.lines = Math.floor( $(document).height() / 16 );
 			}
+			alert( 'lines: ' + self.options.lines + '\ncolumns: ' + self.options.columns );
 			self.addOptions();
 			self.masterListeners('addEventListener');
 			self.createButtonStart();
