@@ -333,7 +333,7 @@ var Snake = (function ($, window, document, undefined) {
 				self.options.columns = Math.floor( screen.width / 16 );
 				self.options.lines = Math.floor( screen.height / 16 );
 			}
-			alert( screen.width );
+			alert( $('body').width() + 'x' + $('body').height() );
 			self.addOptions();
 			self.masterListeners('addEventListener');
 			
