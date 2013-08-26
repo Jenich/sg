@@ -38,9 +38,7 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			clearAll: function () {
-				var $body = $('body');
-				$body.find('button').remove();
-				$body.find('table').remove();
+				$('body > *').remove();
 			},
 
 			createTable: function () {
@@ -327,15 +325,15 @@ var Snake = (function ($, window, document, undefined) {
 			self.clearAll();
 			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
-				/*$('body').css({
-					'min-width': '100%',
-					'min-height': '100%'
-				});*/
+				$('body').css({
+					'min-width': '100px',
+					'min-height': '200px'
+				});
 
 				self.options.columns = Math.floor( screen.width / 16 );
 				self.options.lines = Math.floor( screen.height / 16 );
 			}
-			alert( window.innerWidth );
+			alert( screen.width );
 			self.addOptions();
 			self.masterListeners('addEventListener');
 			
