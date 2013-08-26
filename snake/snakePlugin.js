@@ -260,6 +260,7 @@ var Snake = (function ($, window, document, undefined) {
 			endGame: function (interval) {
 				clearInterval(interval);
 				self.masterListeners('removeEventListener');
+				self.clearAll();
 
 				if ( confirm('You lose(\nTry again?') ) {
 					self.isFirstAcceleration = true;
@@ -329,7 +330,7 @@ var Snake = (function ($, window, document, undefined) {
 				self.options.columns = Math.floor( window.innerWidth / 16 );
 				self.options.lines = Math.floor( window.innerHeight / 16 );
 			}
-			alert( window );
+			alert( window.innerWidth );
 			self.addOptions();
 			self.masterListeners('addEventListener');
 			
