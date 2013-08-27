@@ -307,6 +307,7 @@ var Snake = (function ($, window, document, undefined) {
 
 	return {
 		init: function (options) {
+			alert( $('body').width() + 'x' + $('body').height() );
 			options = options || {};
 			if ( typeof options === 'number' ) {
 				self.options = defaults;
@@ -326,10 +327,9 @@ var Snake = (function ($, window, document, undefined) {
 				self.options.columns = Math.floor( $('body').width() / 16 );
 				self.options.lines = Math.floor( $('body').height() / 16 );
 			}
-			alert( $('body').width() + 'x' + $('body').height() );
+			
 			self.addOptions();
 			self.masterListeners('addEventListener');
-			
 		}
 	};
 
