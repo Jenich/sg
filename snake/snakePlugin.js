@@ -294,14 +294,16 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			createButtonStart: function () {
-				var buttonStart = $('<button>Start games</button>');
-				$('body').after( buttonStart );				
-				buttonStart.click(function () {
-					$(this).css('display', 'none');
-					self.createTable();
-					self.createSnake();
-					self.snakeMove();
-				});
+				var buttonStart = $('button');	
+
+				buttonStart
+					.css('display', 'block')
+					.click(function () {
+						$(this).css('display', 'none');
+						self.createTable();
+						self.createSnake();
+						self.snakeMove();
+					});
 			},
 		};
 
