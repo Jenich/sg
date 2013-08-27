@@ -46,16 +46,17 @@ var Snake = (function ($, window, document, undefined) {
 					}
 					template += '</tr>'
 				}
-				$('body').find('table').append(template);
+				$('#snake').find('table').append(template);
 			},
 
 			createSnake: function () {
+				var snakeWrapper = $('#snake');
 				self.currentSpeed = self.options.speed;
 				self.snake = [];
 
-				$('body').find('td').eq(0).addClass('body');
-				$('body').find('td').eq(1).addClass('body');
-				$('body').find('td').eq(2).addClass('head');
+				snakeWrapper.find('td').eq(0).addClass('body');
+				snakeWrapper.find('td').eq(1).addClass('body');
+				snakeWrapper.find('td').eq(2).addClass('head');
 				self.lineHead = 0;
 				self.columnHead = 2;
 				self.direction = 1;
@@ -179,16 +180,16 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			snakeMove: function () {
-				var $body = $('body'),
+				var snakeWrapper = $('#snake'),
 					i = 0;
 				var moveInterval =
 				setInterval(function () {
-					if ( !$body.find('td.food').length ) {
+					if ( !snakeWrapper.find('td.food').length ) {
 						self.addFood();
 						//self.currentSpeed--;
 					}
 					if ( 0 <= self.lineHead && self.lineHead < self.options.lines && 0 <= self.columnHead && self.columnHead < self.options.columns) {
-						var element = $body.find('td').eq( self.lineHead * self.options.columns + self.columnHead );
+						var element = snakeWrapper.find('td').eq( self.lineHead * self.options.columns + self.columnHead );
 						if (self.direction === 0 && self.lineHead > 0 ) {
 							if ( !element.hasClass('food') ) {
 								self.drawBody();
@@ -240,8 +241,8 @@ var Snake = (function ($, window, document, undefined) {
 						}
 
 						if ( !self.isCollision() ) {
-							$body.find('.head').removeClass('head');
-							$body.find('td').eq( self.lineHead * self.options.columns + self.columnHead ).addClass('head');
+							snakeWrapper.find('.head').removeClass('head');
+							snakeWrapper.find('td').eq( self.lineHead * self.options.columns + self.columnHead ).addClass('head');
 						}
 						else {
 							self.endGame(moveInterval);
@@ -264,7 +265,7 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			clearField: function () {
-				$('body').find('td').removeClass('body food head');		
+				$('#snake').find('td').removeClass('body food head');		
 			},
 
 			isCollision: function () {
@@ -278,7 +279,7 @@ var Snake = (function ($, window, document, undefined) {
 
 			drawBody: function (isGrow) {
 				var length = self.snake.length,
-					tds = $('body').find('td');
+					tds = $('#snake').find('td');
 				tds.eq( self.lineHead * self.options.columns + self.columnHead ).addClass('body');
 				tds.eq( self.snake[length - 1][0] * self.options.columns + self.snake[length - 1][1] ).removeClass('body');
 				if ( !isGrow ) {
@@ -309,7 +310,7 @@ var Snake = (function ($, window, document, undefined) {
 
 	return {
 		init: function (options) {
-			alert( $('body').width() + 'x' + $('body').height() );
+			alert( $('#snake').width() + 'x' + $('#snake').height() );
 			options = options || {};
 			if ( typeof options === 'number' ) {
 				self.options = defaults;
@@ -321,13 +322,13 @@ var Snake = (function ($, window, document, undefined) {
 
 			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
-				$('body').css({
+				/*$('body').css({
 					'min-width': '100px',
 					'min-height': '200px'
-				});
+				});*/
 
-				self.options.columns = Math.floor( $('body').width() / 16 );
-				self.options.lines = Math.floor( $('body').height() / 16 );
+				self.options.columns = Math.floor( $('#snake').width() / 16 );
+				self.options.lines = Math.floor( $('#snake').height() / 16 );
 			}
 			
 			self.addOptions();
