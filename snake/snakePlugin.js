@@ -42,7 +42,7 @@ var Snake = (function ($, window, document, undefined) {
 			},
 
 			createTable: function () {
-				var template = '<table>';
+				var template = '';
 				for (var i = 0; i < self.options.lines; i++) {
 					template += '<tr>'
 					for (var j = 0; j < self.options.columns; j++) {
@@ -50,8 +50,7 @@ var Snake = (function ($, window, document, undefined) {
 					}
 					template += '</tr>'
 				}
-				template += '</table>'
-				$('body').append(template);
+				$('body').find('table').append(template);
 			},
 
 			createSnake: function () {
@@ -330,8 +329,8 @@ var Snake = (function ($, window, document, undefined) {
 					'min-height': '200px'
 				});
 
-				self.options.columns = Math.floor( screen.width / 16 );
-				self.options.lines = Math.floor( screen.height / 16 );
+				self.options.columns = Math.floor( $('body').width() / 16 );
+				self.options.lines = Math.floor( $('body').height() / 16 );
 			}
 			alert( $('body').width() + 'x' + $('body').height() );
 			self.addOptions();
