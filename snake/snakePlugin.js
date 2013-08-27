@@ -37,10 +37,6 @@ var Snake = (function ($, window, document, undefined) {
 				document[param]('deviceready', self.events.onDeviceReady, false);
 			},
 
-			clearAll: function () {
-				$('body > *').remove();
-			},
-
 			createTable: function () {
 				var template = '';
 				for (var i = 0; i < self.options.lines; i++) {
@@ -257,7 +253,6 @@ var Snake = (function ($, window, document, undefined) {
 			endGame: function (interval) {
 				clearInterval(interval);
 				self.masterListeners('removeEventListener');
-				self.clearAll();
 
 				if ( confirm('You lose(\nTry again?') ) {
 					self.isFirstAcceleration = true;
@@ -321,7 +316,6 @@ var Snake = (function ($, window, document, undefined) {
 				self.options = $.extend( {}, defaults, options );
 			}
 
-			self.clearAll();
 			self.createButtonStart();
 			if ( self.options.isFullScreen ) {
 				$('body').css({
